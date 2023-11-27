@@ -1,14 +1,14 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
-bool prime(unsigned long long int number);
+bool prime(unsigned long long int num);
 int main(int argc, char *argv[])
 {
     unsigned long long int n = 1;
-    unsigned long long int number = 0;
-    unsigned long long int div_ = number;
+    unsigned long long int num = 0;
+    unsigned long long int div = num;
     FILE *file;
     char buffer[1000];
     char *end = NULL;
@@ -30,15 +30,15 @@ int main(int argc, char *argv[])
     {
         fgets(buffer, 1000, file);
         if (feof(file) || ferror(file)) break;
-        number = strtoull(buffer, &end, 10);
+        num = strtoull(buffer, &end, 10);
 
-        for (int i_ = 2; i_< number; i_++)
+        for (int i = 2; i < num; i++)
         {
-            if (number % i_ == 0 && prime(i_) && prime(number / i_))
+            if (num % i == 0 && prime(i) && prime(num / i))
             {
-                div_ = number / i_;
-                n = i_;
-                printf("%lld = %lld * %lld\n", number, div_, n);
+                div = num / i;
+                n = i;
+                printf("%lld = %lld * %lld\n", num, div, n);
                 break;
             }
         }
@@ -50,13 +50,13 @@ int main(int argc, char *argv[])
 }
 
 
-bool prime(unsigned long long int number)
+bool prime(unsigned long long int num)
 {
-    int i_;
+    int i;
 
-    for (i_ = 2; i_ < number; i_++)
+    for (i = 2; i < num; i++)
     {
-        if (number % i_ == 0)
+        if (num % i == 0)
         {
             return false;
         }
